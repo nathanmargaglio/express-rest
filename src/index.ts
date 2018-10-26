@@ -5,7 +5,9 @@ import controllers from './controllers';
 
 import App from './App';
 
-let app = new App().express;
+let _app = new App()
+_app.sequelize.sync();
+let app  = _app.express;
 Server.buildServices(app, ...controllers);
 
 debug('ts-express:server');
