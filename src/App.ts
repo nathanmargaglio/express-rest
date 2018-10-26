@@ -31,23 +31,15 @@ class App {
 	}
 
 	private sequelizer(): Sequelize {
-		return new Sequelize({
-			database: 'api_dev',
-			dialect: 'postgres',
-			username: 'postgres',
-            password: null,
-            port: 15432,
+        return new Sequelize({
+            url: process.env.DATABASE_URL,
 			modelPaths: [__dirname + '/models']
 		});
 	}
 
     private testSequelizer(): Sequelize {
         return new Sequelize({
-			database: 'api_test',
-			dialect: 'postgres',
-			username: 'postgres',
-            password: null,
-            port: 15432,
+            url: process.env.HEROKU_POSTGRESQL_TEAL_URL,
 			modelPaths: [__dirname + '/models']
 		});
 	}

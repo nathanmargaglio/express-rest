@@ -40,6 +40,7 @@
     "ts-node": "^7.0.1"
   },
   "scripts": {
+    "postinstall": "ntsc",
     "start": "node dist/index.js",
     "dev": "nodemon -e ts --exec \"ntsc && node dist || exit 1\"",
     "test": "mocha --exit --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'"
