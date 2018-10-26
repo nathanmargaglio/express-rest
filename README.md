@@ -2,7 +2,7 @@
 
 ## Development Setup
 ### Prereqs
-On your local machine (hopefully a UNIX machine), you'll need Vagrant installed and setup as well as NodeJS (version 8).  You can use `nvm` to manage node versions.  The [Wiki](https://wiki.studiolabs.com/display/DEV/Vagrant) has information on both of these tools.  
+On your local machine (hopefully a UNIX machine), you'll need Vagrant installed and setup as well as NodeJS (version 8).  You can use `nvm` to manage node versions.
 
 ## Local Setup
 After cloning, run `vagrant up`.  This creates a virtual machine that houses the Postgres database and sets up some of the project's guts (such as a couple of databases, installs node dependencies, etc.).
