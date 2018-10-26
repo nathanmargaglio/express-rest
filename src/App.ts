@@ -31,18 +31,33 @@ class App {
 	}
 
 	private sequelizer(): Sequelize {
-        return new Sequelize({
-            url: process.env.DATABASE_URL,
-			modelPaths: [__dirname + '/models']
-		});
-	}
+        if (process.env.DATABASE_URL) {
+            return new Sequelize({
+                url: process.env.DATABASE_URL,
+                modelPaths: [__dirname + '/models']
+            });
+        } else {
+            return new Sequelize({
+                database: 'api_dev',
+                dialect: 'postgres',
+                username: 'postgres',
+                password: null,
+                port: 15432,
+                modelPaths: [__dirname + '/models']
+            });
+        }
+    }
 
     private testSequelizer(): Sequelize {
         return new Sequelize({
-            url: process.env.HEROKU_POSTGRESQL_TEAL_URL,
+			database: 'api_test',
+			dialect: 'postgres',
+			username: 'postgres',
+            password: null,
+            port: 15432,
 			modelPaths: [__dirname + '/models']
 		});
-	}
+    }
 }
 
 export default App;
