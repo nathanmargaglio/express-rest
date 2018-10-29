@@ -1,7 +1,9 @@
 import * as http from 'http';
 import * as debug from 'debug';
+import * as express from 'express';
 import { Server } from 'typescript-rest';
 import controllers from './controllers';
+import * as path from 'path';
 
 import App from './App';
 
@@ -19,6 +21,8 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+app.use('/doc', express.static(path.join(__dirname, 'doc')))
 
 function normalizePort(val: number|string): number|string|boolean {
   let port: number = (typeof val === 'string') ? parseInt(val, 10) : val;
