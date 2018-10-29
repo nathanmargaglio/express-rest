@@ -79,11 +79,35 @@ An example of one of these tests:
 
 Here, we make a GET request to the `/test` endpoint, and check that the response is of type `application/json`.  These tests can obviously be much more complex, but all that requires is adding more `expect` statements after the response is received.  When you want to hit another endpoint, you'd just write a similar `it` statement.
 
+## Documentation
+Similar to how we're handling testing, we're going to generate docs related to the API.  To do this, we're going to be using [apidoc](https://www.npmjs.com/package/apidoc).
+
+The way this works is by writing comments (formatted in a specific way) for each endpoint written in the controllers.  An example of one such comment might be:
+
+    /**
+     * @api {get} /test Get All Tests
+     * @apiName GetTests
+     * @apiGroup Test
+     *
+     * @apiSuccess {Number} id ID of Test entry.
+     * @apiSuccess {String} value Value of Test entry.
+     * @apiSuccess {String} createdAt DateTime of creation.
+     * @apiSuccess {String} updatedAt DateTime of laste update.
+     */
+    @GET
+    async getTests(): Promise<Test[]> {
+        return await Test.findAll();
+    }
+This not only provides comments for each controller (which should be there anyways), but also allows us to use apidoc to generate a nice set of API docs that can be served along with the API.
+
+To generate such a doc, run `npm run doc`.  This will look for these kinds of comments in the code and create the docs from them.  Then, assuming the API is running locally, you can view them at `localhost:3000/doc/index.html`
+
 ## Summary
 That's the basic idea of working with this project.  The workflow should be similar to:
 
  1. Define Model
  2. Setup Controller Methods
- 3. Write Tests
+ 3. Document Each Endpoint
+ 4. Write Tests
 
 As the project becomes more complex, we may have to abstract code to different parts of the project, but the general outline above should still be in place.
