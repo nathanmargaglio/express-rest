@@ -8,7 +8,7 @@ import * as path from 'path';
 import App from './App';
 
 let _app = new App()
-_app.sequelize.sync();
+//_app.sequelize.sync();
 let app  = _app.express;
 Server.buildServices(app, ...controllers);
 
